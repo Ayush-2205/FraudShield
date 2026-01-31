@@ -53,7 +53,7 @@ The system takes the following inputs from the user:
 1. **Policy Premium** – Amount paid for the insurance policy  
 2. **Total Claim Amount** – Total claim requested  
 3. **Age** – Age of the policy holder  
-4. **Vehicle Claim Amount** – Amount claimed for vehicle damage  
+4. **Months As Customer** – Months since he/she is enrolled into the policy
 
 ---
 
