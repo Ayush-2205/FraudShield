@@ -19,11 +19,11 @@ Fraud Shield uses a machine learning model trained on historical insurance data 
 
 ## Key Features
 
-- 🔍 Real-time fraud risk prediction  
-- 🤖 Machine Learning based classification  
-- 🎯 Simple and intuitive user interface  
-- ⚡ Fast and lightweight Flask backend  
-- 📊 Scalable architecture for future enhancements  
+-  Real-time fraud risk prediction  
+-  Machine Learning based classification  
+-  Simple and intuitive user interface  
+-  Fast and lightweight Flask backend  
+-  Scalable architecture for future enhancements  
 
 ---
 
@@ -81,7 +81,7 @@ User → Web Interface → Flask Server → ML Model → Prediction → Result D
 git clone https://github.com/your-username/fraud-shield.git
 cd fraud-shield
 
-### Step 2: Install dependencies
+Step 2: Install dependencies
 
 pip install -r requirements.txt
 
