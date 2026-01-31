@@ -64,7 +64,7 @@ The model returns:
   or  
 - **High Risk: Potential Fraud**
 
-Along with a short explanation indicating why the claim was classified that way.
+
 
 ---
 
