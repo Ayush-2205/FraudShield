@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
-import joblib
 
 app = Flask(__name__)
-model = joblib.load("fraud_model.pkl")
 
 @app.route("/")
 def home():
@@ -10,20 +8,41 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    policy_premium = float(request.form["policy_premium"])
-    total_claim = float(request.form["total_claim_amount"])
-    age = float(request.form["age"])
-    vehicle_claim = float(request.form["vehicle_claim"])
+    try:
+        # Get inputs from form
+        premium = float(request.form["premium"])
+        total_claim = float(request.form["total_claim"])
+        age = float(request.form["age"])
+        months = float(request.form["months"])
 
-    data = [[policy_premium, total_claim, age, vehicle_claim]]
-    prediction = model.predict(data)[0]
+        # Simple intelligent rule
+        if total_claim > premium * 20:
+            prediction = 1  # High Risk
+            result = "High Risk ⚠️"
+            explanation = (
+                "The total claim amount is extremely high compared to the annual premium. "
+                "This pattern is often associated with fraudulent or suspicious claims."
+            )
+        else:
+            prediction = 0  # Low Risk
+            result = "Low Risk ✅"
+            explanation = (
+                "The claim amount is reasonable compared to the premium and user profile. "
+                "This indicates a legitimate insurance claim."
+            )
 
-    if prediction == 1:
-        result = "⚠️ High Risk: Potential Fraud Detected"
-    else:
-        result = "✅ Low Risk: Legitimate Claim"
+        return render_template(
+            "index.html",
+            prediction_text=result,
+            explanation=explanation
+        )
 
-    return render_template("index.html", result=result)
+    except:
+        return render_template(
+            "index.html",
+            prediction_text="Error ❌",
+            explanation="Please enter valid numeric values in all fields."
+        )
 
 if __name__ == "__main__":
     app.run(debug=True)
